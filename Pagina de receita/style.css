@@ -21,7 +21,7 @@ body {
     padding: 24px;
     background-color: #f0e8c2;
     border-radius: 24px;
-    margin: 48px auto;
+    margin: 48px auto 28px;
 }
 
 main {
@@ -55,4 +55,15 @@ h1, h2 {
 
 ul {
     padding: 24px;
+}
+
+footer {
+    text-align: center;
+    color: white;
+    padding-bottom: 48px;
+    font-weight: ;
+}
+
+footer img {
+    vertical-align: middle;
 }
