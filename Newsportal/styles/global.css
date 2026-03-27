@@ -40,5 +40,21 @@ a:hover {
 
 h1, h2, h3 {
     font: inherit; /*font inherit = fonte herdada da tag ("pai" = body)*/
-     
+
+}
+
+.container { /* vai definir um tamanho especifico para um divisor como o header que tem o tamanho prefixo abaixo como esta informado na documentação*/
+    max-width: 1280px;
+    padding-inline: 32px;
+    margin-inline: auto;
+}
+
+/*utility-first = Classe que tem apenas uma função (Faz apenas uma coisa)*/
+.grid {
+    display: grid;
+}
+
+/*muda o flow automatico do grid para que ele se torne uma coluna*/
+.grid-flow-col {
+    grid-auto-flow: column;
 }

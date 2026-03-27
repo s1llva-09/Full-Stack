@@ -1,0 +1,26 @@
+#primary {
+    padding-block: 20px; /*Determinada função na qual contem block faz com que o efeito dela seja dado em cima e embaixo*/
+
+    div { /*esta selecionando todas as divs dentro de primary*/
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    /*nesting css = seleciona a segunda div que esta dentro de primary*/
+    div:nth-child(2) {
+        margin-inline: auto; /*faz com que esta função chamada aplique seu efeito em ambos os lados do site*/
+    }
+
+    /*Selecionando a terceira div dentro de primary*/
+    div:nth-child(3) {
+        justify-self: end;
+    }
+}
+
+#secondary {
+    padding-block: 14px;
+    border: solid 1px var(--stroke-color);
+    border-inline: none;
+    justify-content: space-between;
+}
