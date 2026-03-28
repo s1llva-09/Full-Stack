@@ -1,0 +1,17 @@
+/*utility-first = Classe que tem apenas uma função (Faz apenas uma coisa)*/
+.grid {
+    display: grid;
+}
+
+/*muda o flow automatico do grid para que ele se torne uma coluna*/
+.grid-flow-col {
+    grid-auto-flow: column;
+}
+
+.grid-cols-2 {
+    grid-template-columns: 1fr 1fr;
+}
+
+.gap-16 {
+    gap: 16px;
+}
