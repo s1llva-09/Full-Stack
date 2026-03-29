@@ -4,4 +4,22 @@
         object-fit: cover;
         border-radius: 4px;
     }
+
+    .card {
+        border-radius: 4px; /*// Arredonda cantos da caixa em 4px*/
+        overflow: hidden; /*// Corta conteúdo que vaza (importante pro border-radius na img filha)*/
+        position: relative; /*// Permite posicionar ::before em relação à .card*/
+
+        &::before { /*// Pseudo-elemento: cria "camada invisível" sobre a .card*/
+            content: ""; /*// Obrigatório pra ::before aparecer (string vazia OK)*/
+            position: absolute; /*// Posiciona sobre a .card*/
+            inset: 0; /*// = top:0; right:0; bottom:0; left:0 → cobre 100% da .card*/
+            top: 50%; /*faz o espaço do inset:0 ir para 50%*/
+            background: linear-gradient( /*// Gradiente transparente (topo) → preto (baixo): efeito "escurece fundo da img"*/
+                180deg, /**/
+                transparent 0%, /**/
+                #020617 100% /**/
+            );
+        }
+    }
 }
