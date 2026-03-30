@@ -1,0 +1,34 @@
+{
+  "tasks": [
+    {
+      "description": "Estudar JS",
+      "finished": true,
+      "id": "Q3JQaj08v3k"
+    },
+    {
+      "description": "Estudar React.js",
+      "finished": false,
+      "id": "2ZCEgxN1Ruc"
+    },
+    {
+      "description": "Instalar Node.js",
+      "finished": false,
+      "id": "3WCEhxM2Stb"
+    }
+  ],
+  "peoples": [
+    {
+      "name": "Maria",
+      "id": "QBj9qsrf8NM"
+    },
+    {
+      "name": "João",
+      "id": "VQIfLG_dbF4"
+    },
+    {
+      "name": "Jesus",
+      "id": "5BnROqQ71t8"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
