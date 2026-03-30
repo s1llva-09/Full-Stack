@@ -7,7 +7,7 @@ const paragrafoTotalTarefas = document.getElementById("total-tarefas")
 const btnLimpar = document.getElementById("btn-limpar")
 const input = document.getElementById("input")
 
-btnAdicionar.addEventListener('click', () => {
+btnAdicionar.addEventListener('click', async () => {
     if (input.value == '') {
         alert('Informe uma tarefa!!')
         return
@@ -18,16 +18,17 @@ btnAdicionar.addEventListener('click', () => {
         finished: false
     }
  
-    api.criarTask(tarefa)
+    const tarefaCriada = await api.criarTask(tarefa)
+    console.log(tarefaCriada)
 
     // TODO: substituir codigos abaixo por carregarTarefas() que já faz isso
-    criarLiTarefa(tarefa)
+    criarLiTarefa(tarefaCriada)
     atualizarTotalLista(listaTarefas.children.length)
 })
 
-btnLimpar.addEventListener('click', () => {
+btnLimpar.addEventListener('click',async () => {
     // TODO: invocar função da api de deletar todas as tasks
-
+    await api.deletarTodasTasks()
     // TODO: substituir codigos abaixo por carregarTarefas() que já faz isso
     while (listaTarefas.firstChild) {
         listaTarefas.removeChild(listaTarefas.firstChild)
@@ -47,20 +48,24 @@ function criarLiTarefa(tarefa) {
         checkConcluido.checked = true
         liTarefa.classList.add('concluido')
     }
-    checkConcluido.addEventListener('change', () => {
+    checkConcluido.addEventListener('change',async () => {
         // TODO: invocar função da api de atualizar uma task
+        await api.atualizarTask(tarefa.id, {
+            finished: checkConcluido.checked
+        })
         liTarefa.classList.toggle('concluido')
     })
     liTarefa.appendChild(checkConcluido)
     
     const btnRemover = document.createElement("button")
     btnRemover.textContent = "🗑️"
-    btnRemover.addEventListener('click', () => {
+    btnRemover.addEventListener('click',async () => {
+        await api.deletarTask(tarefa.id)
         // TODO: invocar função da api de deletar uma task passando id
 
         // TODO: substituir codigos abaixo por carregarTarefas() que já faz isso
         listaTarefas.removeChild(liTarefa)
-        atualizarTotalLista()
+        atualizarTotalLista(listaTarefas.children.length)
     })
     liTarefa.appendChild(btnRemover)
 
