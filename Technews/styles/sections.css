@@ -10,6 +10,8 @@
         overflow: hidden; /*// Corta conteúdo que vaza (importante pro border-radius na img filha)*/
         position: relative; /*// Permite posicionar ::before em relação à .card*/
 
+        /*:: significa alteração na parte virtual ou visual da coisa*/
+
         &::before { /*// Pseudo-elemento: cria "camada invisível" sobre a .card*/
             content: ""; /*// Obrigatório pra ::before aparecer (string vazia OK)*/
             position: absolute; /*// Posiciona sobre a .card*/
@@ -25,6 +27,8 @@
             position: absolute;
             bottom: 0;
             padding: 24px;
+
+            /*: normalmente usado para condição ou estado de algo como por exemplo ver se o a tag possui a classe informada para depois alterala, um if else basicamente*/
 
             &:has(.text-lg) {/* procura saber se a classe que esta imposta no parenteses existe e se existir aplica essa alteração para a classe em especifico*/
                 padding: 12px;
