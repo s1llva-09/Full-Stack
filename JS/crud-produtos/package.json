@@ -1,0 +1,13 @@
+{
+  "name": "js-crud-completo-front",
+  "description": "Projeto desenvolvimento em sala de aula junto aos alunos",
+  "author": "Vitor Moak",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "script.js",
+  "scripts": {
+    "dev": "npx json-server --watch db.json --port 3000"
+  },
+  "keywords": [],
+  "license": "ISC"
+}
