@@ -49,3 +49,24 @@ btnSalvar.addEventListener("click", async () => {
   fecharModal()
 })
 
+function criarCard(produto) { // transforma um objeto da api em card visual na tela
+  const card = document.createElement("div")
+  card.classList.add("card")
+
+  const titulo = document.createElement("h3")
+  titulo.innerText = produto.nome
+
+  const preco = document.createElement(p)
+  preco.innerText = "R$" + Number(produto.preco).toFixed(2).replace(".", ",")
+
+  const acoes = document.createElement("div")
+  acoes.classList.add("acoes")
+
+  const btnEditar = document.createElement("button")
+  btnEditar.clas.add("btn-primario")
+  btnEditar.innerText = "Editar"
+  btnEditar.addEventListener("click", () => {
+    abrirModal("editara", produto)
+  })
+
+}

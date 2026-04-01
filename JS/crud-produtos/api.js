@@ -2,8 +2,10 @@ const API_URL = 'http://localhost:3000/produtos'
 
 export async function obterProdutos() {
     try {
-        const response = await fetch(API_URL) //esta fazendo a requisição para a API em questão
+        //Como eu estou obtendo o produto em si, nao precisa de method, header e body, pois estou apenas pedindo informações para o servidor o "fetch" ja age como um GET
 
+        const response = await fetch(API_URL) //esta fazendo a requisição para a API em questão
+                                //fetch esta agindo como o get
         if(!response.ok) { //verifica se a resposta teve sucesso
             throw new Error("Erro ao buscar produtos") // cria um erro manualmente para informar que a busca falhou
         }
@@ -14,5 +16,3 @@ export async function obterProdutos() {
         throw error //repassa o erro pra quem chamou a função em vez de escondelo
     }
 }
-
-//Como eu estou obtendo o produto em si, nao precisa de method, header e body pois estou apenas pedindo informações para o servidor o "fetch" ja age como um GET
