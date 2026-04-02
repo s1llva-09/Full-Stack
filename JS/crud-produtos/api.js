@@ -36,3 +36,21 @@ export async function criarProduto(produto) {
         throw error
     }
 }
+
+export async function editarProduto(id, produto) {
+    try {
+        const response = await fetch (`${API_URL}/${id}`, {
+            method: "PATCH",
+            headers: {"Content-Type": "application/json"},
+            body:JSON.stringify(produto)
+        })
+
+        if(!response.ok) {
+            throw new Error("Erro ao editar")
+        }
+        return await response.json() 
+    } catch (error) {
+        console.error(error)
+        throw error
+    }
+}

@@ -14,6 +14,12 @@
       "nome": "Coxinha",
       "preco": "10.50",
       "id": "DR7tWimZBHY"
+    },
+    {
+      "nome": "xebiu",
+      "preco": "2500",
+      "id": "COKe8SH5vWg"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

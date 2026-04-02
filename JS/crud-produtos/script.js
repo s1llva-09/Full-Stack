@@ -1,4 +1,3 @@
-import { createElement } from 'react'
 import * as api from './api.js'
 
 const modal = document.getElementById("modal")
@@ -40,14 +39,21 @@ btnSalvar.addEventListener("click", async () => {
   const nome = nomeInput.value
   const preco = precoInput.value
 
-  if (!nome && !preco) {
+  if (!nome || !preco) {
     alert("Preencha todos os campos!")
     return
   }
 
-  await api.criarProduto({ nome, preco })
+  const produto = { //pega o valor dos imputs: nome e preco
+    nome, preco //valida e monta o objeto
+  }
 
-  fecharModal()
+  if(produtoEditando == null) { //confere se o produto esta sendo editado
+    await api.criarProduto(produto) // chama a API
+  }
+
+  fecharModal() // fecha o modal de cadastro e envia os dados
+  carregarProdutos() //carrega os dados dos produtos
 })
 
 function criarCard(produto) { //pega um produto e desenha um card desse produto na tela
@@ -56,7 +62,7 @@ function criarCard(produto) { //pega um produto e desenha um card desse produto 
   card.classList.add("card") //Adiciona ela na classe card do CSS
 
   const titulo = document.createElement("h3") //Cria um h3
-  card.textContent = produto.nome //Adiciona o nome do produto no h3
+  titulo.textContent = produto.nome //Adiciona o nome do produto no h3
 
   const preco = document.createElement("p") //cria o paragrafo
   preco.textContent = `R$ ${Number(produto.preco).toFixed(2)}` //Aloca o preço nele com 2 casas decimais
@@ -65,6 +71,8 @@ function criarCard(produto) { //pega um produto e desenha um card desse produto 
   card.appendChild(preco) //Passa o p para dentro do div.card
 
   listaProdutos.appendChild(card) //coloca o card com as informações dentro da lista
+
+  const btnEditar
 }
 
 async function carregarProdutos() { //precisa estar aqui pois tem await na função
