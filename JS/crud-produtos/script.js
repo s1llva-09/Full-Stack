@@ -80,3 +80,25 @@ async function carregarProdutos() { //precisa estar aqui pois tem await na funç
 //criarCard() desenha o card de um produto
 // pega todos os produtos e chama criarCard() varias vezes
 carregarProdutos()
+function criarCard(produto) { // transforma um objeto da api em card visual na tela
+  const card = document.createElement("div")
+  card.classList.add("card")
+
+  const titulo = document.createElement("h3")
+  titulo.innerText = produto.nome
+
+  const preco = document.createElement(p)
+  preco.innerText = "R$" + Number(produto.preco).toFixed(2).replace(".", ",")
+
+  const acoes = document.createElement("div")
+  acoes.classList.add("acoes")
+
+  const btnEditar = document.createElement("button")
+  btnEditar.clas.add("btn-primario")
+  btnEditar.innerText = "Editar"
+  btnEditar.addEventListener("click", () => {
+    abrirModal("editara", produto)
+  })
+
+}
+>>>>>>> 4e68e4f2677bd5a549dc0e93841b491f9ac311f5
