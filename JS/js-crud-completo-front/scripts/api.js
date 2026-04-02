@@ -2,7 +2,7 @@
 export async function listarTasks() {
     try {
         const response = await fetch('http://localhost:3000/tasks')
-
+        
         return await response.json()
     } catch (error) {
         console.error(error)

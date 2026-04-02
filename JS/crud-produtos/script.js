@@ -1,3 +1,4 @@
+import { createElement } from 'react'
 import * as api from './api.js'
 
 const modal = document.getElementById("modal")
@@ -49,3 +50,33 @@ btnSalvar.addEventListener("click", async () => {
   fecharModal()
 })
 
+function criarCard(produto) { //pega um produto e desenha um card desse produto na tela
+
+  const card = document.createElement("div") //Cria uma div
+  card.classList.add("card") //Adiciona ela na classe card do CSS
+
+  const titulo = document.createElement("h3") //Cria um h3
+  card.textContent = produto.nome //Adiciona o nome do produto no h3
+
+  const preco = document.createElement("p") //cria o paragrafo
+  preco.textContent = `R$ ${Number(produto.preco).toFixed(2)}` //Aloca o preço nele com 2 casas decimais
+
+  card.appendChild(titulo) //Passa o h3 para dentro do div.card
+  card.appendChild(preco) //Passa o p para dentro do div.card
+
+  listaProdutos.appendChild(card) //coloca o card com as informações dentro da lista
+}
+
+async function carregarProdutos() { //precisa estar aqui pois tem await na função
+  listaProdutos.innerHTML = "" //limpa tudo que ja esta dentro da div criada de produtos
+
+  const produtos = await api.obterProdutos() //aqui eu chamo a função feita obter produtos da api, vai buscar os produtos do json e devolver uma array
+
+  produtos.forEach((produto) => { //o foreach percorre toda a array para procurar os produtos cadastrados
+    criarCard(produto) //cria um card para cada produto cadastrado
+  })
+}
+
+//criarCard() desenha o card de um produto
+// pega todos os produtos e chama criarCard() varias vezes
+carregarProdutos()
