@@ -39,16 +39,19 @@ export async function criarProduto(produto) {
 
 export async function editarProduto(id, produto) {
     try {
-        const response = await fetch (`${API_URL}/${id}`, {
+        const response = await fetch (`${API_URL}/${id}`, {// faz requisição da api
             method: "PATCH",
-            headers: {"Content-Type": "application/json"},
-            body:JSON.stringify(produto)
+            headers: {"Content-Type": "application/json"},//informando o envio do arquivo JSON
+            body:JSON.stringify(produto)//converte JS em JSON para API receber informações
         })
 
-        if(!response.ok) {
+        if(!response.ok) {// se a resposta nao vier com sucesso forca um erro para melhor identificação e tratar no catch
+
             throw new Error("Erro ao editar")
         }
-        return await response.json() 
+
+        return await response.json() // devolve toda a task criada para o servidor (json-server) para que com isto ele cria o id autoamticamente
+
     } catch (error) {
         console.error(error)
         throw error
