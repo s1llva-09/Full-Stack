@@ -40,7 +40,7 @@ export async function criarProduto(produto) {
 export async function editarProduto(id, produto) {
     try {
         const response = await fetch (`${API_URL}/${id}`, {// faz requisição da api
-            method: "PATCH",
+            method: "PATCH", //informa a api que ira alterar uma informação enviada para o banco
             headers: {"Content-Type": "application/json"},//informando o envio do arquivo JSON
             body:JSON.stringify(produto)//converte JS em JSON para API receber informações
         })

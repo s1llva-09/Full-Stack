@@ -11,7 +11,7 @@ const btnCancelar = document.getElementById("cancelar")
 const modalTitulo = document.getElementById("modalTitulo")
 const listaProdutos = document.getElementById("listaProdutos")
 
-let produtoEditando = null
+let produtoEditando = null // inicia informando que não esta editando nenhuma informação
 
 function abrirModal(modo = "novo", produto = null) {
   modal.classList.remove("hidden")
@@ -21,11 +21,13 @@ function abrirModal(modo = "novo", produto = null) {
     nomeInput.value = ""
     precoInput.value = ""
     produtoEditando = null
-  } else {
-    modalTitulo.innerText = "Editar Produto"
-    nomeInput.value = produto.nome
-    precoInput.value = produto.preco
-    produtoEditando = produto
+  } else { //entra no modo de edição caso o modal aberto nao seja "novo"
+    modalTitulo.innerText = "Editar Produto" //Muda o titulo
+    nomeInput.value = produto.nome // Coloca o noo=vo nome atual no input
+    precoInput.value = produto.preco // Informa o novo preço do input
+    produtoEditando = produto //guarda o produto que esta sendo editado
+
+    //dps o btnSalvar usa o valor do produtoEditando para alterar as informações e salvar os dados
   }
 }
 
@@ -48,8 +50,10 @@ btnSalvar.addEventListener("click", async () => {
     nome, preco //valida e monta o objeto
   }
 
-  if(produtoEditando == null) { //confere se o produto esta sendo editado
+  if(produtoEditando == null) { //se nao esta editando, chama a função api.criarProduto(produto)
     await api.criarProduto(produto) // chama a API
+  }else {
+    await api.editarProduto(produtoEditando.id, produto) // se esta editando chama a api de edição usando o id do produto atual
   }
 
   fecharModal() // fecha o modal de cadastro e envia os dados
@@ -72,7 +76,12 @@ function criarCard(produto) { //pega um produto e desenha um card desse produto 
 
   listaProdutos.appendChild(card) //coloca o card com as informações dentro da lista
 
-  const btnEditar
+  const bntEditar = document.createElement("button")
+  bntEditar.textContent = "Editar"
+
+  bntEditar.addEventListener("click", () => {
+    abrirModal("editar", produto)
+  })
 }
 
 async function carregarProdutos() { //precisa estar aqui pois tem await na função
