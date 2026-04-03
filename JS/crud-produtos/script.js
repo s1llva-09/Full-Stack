@@ -57,7 +57,7 @@ btnSalvar.addEventListener("click", async () => {
   }
 
   fecharModal() // fecha o modal de cadastro e envia os dados
-  carregarProdutos() //carrega os dados dos produtos
+  await carregarProdutos() //carrega os dados dos produtos
 })
 
 function criarCard(produto) { //pega um produto e desenha um card desse produto na tela
@@ -76,12 +76,27 @@ function criarCard(produto) { //pega um produto e desenha um card desse produto 
 
   listaProdutos.appendChild(card) //coloca o card com as informações dentro da lista
 
-  const bntEditar = document.createElement("button")
-  bntEditar.textContent = "Editar"
+  const bntEditar = document.createElement("button") // cria o botão
+  bntEditar.textContent = "Editar" // deixa o texto visivel
 
-  bntEditar.addEventListener("click", () => {
-    abrirModal("editar", produto)
+  bntEditar.addEventListener("click", () => { //define oq vai acontecer ao clicar
+    abrirModal("editar", produto)//abre o modal no modo de edição e passa o produto atual
   })
+
+  card.appendChild(bntEditar) // faz o botao editar aparecer na tela do html
+
+  const bntExcluir = document.createElement("button") // cria botao de excluir
+  bntExcluir.textContent = "Excluir" //deixa o texto de deletar visivel
+
+  bntExcluir.addEventListener("click", async () => { //define oq vai acontecer ao clicar o botão
+    const confirmar = confirm("Deseja excluir este produto?") // pergunta ao usuario se ira deletar ou nao
+    if (!confirmar) return // se a resposta for nao ele cancela o evento
+
+
+    await api.excluirProduto(produto.id) //aqui chamo a função da api para exclusão de produtos no HTML
+    carregarProdutos() // atualiza a lista e carrega os produtos
+  })
+  card.appendChild(bntExcluir) // adiciona o botao de exlcuir no card
 }
 
 async function carregarProdutos() { //precisa estar aqui pois tem await na função

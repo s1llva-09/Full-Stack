@@ -1,22 +1,17 @@
 {
   "produtos": [
     {
-      "nome": "Teste",
-      "preco": "10.50",
-      "id": "3DSoFURbt3E"
-    },
-    {
       "nome": "Coxinha",
       "preco": "12.50",
       "id": "CrO4bakXzPM"
     },
     {
-      "nome": "Coxinha",
+      "nome": "trembo",
       "preco": "10.50",
       "id": "DR7tWimZBHY"
     },
     {
-      "nome": "xebiu",
+      "nome": "pece",
       "preco": "2500",
       "id": "COKe8SH5vWg"
     }

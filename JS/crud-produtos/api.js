@@ -57,3 +57,23 @@ export async function editarProduto(id, produto) {
         throw error
     }
 }
+
+
+// funções que excluem dados nao necessitam de body e header(opcional)
+export async function excluirProduto(id) {
+    try {
+        const response = await fetch (`${API_URL}/${id}`, { // faz requisição na api referenciando o ID
+            method: 'DELETE', //informa a api que ira deletar dados especificos no banco
+            headers: {"Content-Type": "application/json"} //informa os arquivos de envio para o JSON
+        })
+
+        if(!response.ok) { // se a resposta nao vier com sucesso forca um erro para melhor identificação e tratar no catch
+            throw new Error("Erro ao excluir") 
+        }
+
+        //nao necessita de return pois o delete volta sem corpo de dados
+    } catch (error) {
+        console.error(error)
+        throw(error)
+    }
+}
