@@ -1,0 +1,17 @@
+{
+  "livros": [
+    {
+      "id": "1",
+      "titulo": "Dom Casmurro",
+      "autor": "Machado de Assis",
+      "ano": "1899"
+    },
+    {
+      "id": "2",
+      "titulo": "Capitaes da Areia",
+      "autor": "Jorge Amado",
+      "ano": "1937"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
