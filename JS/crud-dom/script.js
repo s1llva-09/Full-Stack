@@ -52,3 +52,6 @@ function fecharModal() { //função para fechar o modal
 bntNovo.addEventListener("click",() => abrirModal("novo")) //quando o usuario clicar em Novo Livro vai para abrir modal
 bntCancelar.addEventListener("click", fecharModal)
 
+function criarCard() {
+    
+}
