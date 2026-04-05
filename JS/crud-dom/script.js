@@ -50,9 +50,33 @@ function fecharModal() { //função para fechar o modal
 }
 
 bntNovo.addEventListener("click",() => abrirModal("novo")) //quando o usuario clicar em Novo Livro vai para abrir modal
-bntCancelar.addEventListener("click", fecharModal)
+bntCancelar.addEventListener("click", fecharModal) //ao click fecha o modal
 
-function criarCard(livros) {
-    const card = document.createElement("div")
-    card.classList("modal-card")
+function criarCard(livros) {            
+    const card = document.createElement("div") //cria uma div para o card
+    card.classList("card") // aplica a div do card na classe "card" do css
+
+    const titulo = document.createElement("h3") //cria o h3 para o titulo
+    titulo.textContent = livro.titulo //passa a variavel de titulo para o h3
+
+    const autor = document.createElement("p") //cria um paragrafo para nome do autor
+    autor.textContent = `Autor: ${livro.autor}` //passa a variavel do nome do autor para o "P"
+
+    const ano = document.createElement("p") //cria um paragrafo com o ano de lançamento do livro
+    ano.textContent = `Ano: ${livro.ano}` //passa a variavel do ano do livro para o "P"
+
+    //area dos botões
+    const acoes = document.createElement("div") //cria a div dos botões de ações
+    acoes.classList.add("acoes") //Adiciona na classe de acoes
+
+    //Botao Editar
+    const btnEditar = document.createElement("button") //cria o botao de editar
+    btnEditar.textContent = "Editar" // coloca o nome dele como "Editar"
+    btnEditar.classList.add("btn", "btn-secundario") // adiciona ele a classe de "btn-secundario"
+
+    //Botao Excluir
+    const btnExcluir = document.createElement("button") //cria o botao de excluir
+    btnExcluir.classList.add("btn", "btn-perigo") // adiciona ele a classe de "btn-perigo"
+
+
 }
