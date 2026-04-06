@@ -1,8 +1,8 @@
-API_URL = "http://localhost:3000/alunos"
+const API_URL = "http://localhost:3000/alunos";
 
 export async function listarALunos() {
     try {                       //fetch age como get
-        const response = await fetch (API_URL)
+        const response = await fetch(API_URL)
 
         if(!response.ok) {
             throw new Error("Erro na Listagem")
@@ -17,10 +17,10 @@ export async function listarALunos() {
 
 export async function criarALunos(aluno) {
     try {                       
-        const response = await fetch (API_URL, {
+        const response = await fetch(API_URL, {
             method: 'POST',
             headers: {
-                "Content-Type" : "application/json"
+                "Content-Type": "application/json"
             },
             body: JSON.stringify(aluno)
         })
@@ -38,10 +38,10 @@ export async function criarALunos(aluno) {
 
 export async function editarALunos(id, aluno) {
     try {
-        const response = await fetch (`${API_URL}/${id}`, {
-            method:'PATCH',
+        const response = await fetch(`${API_URL}/${id}`, {
+            method: 'PATCH',
             headers: {
-                "Content-Type" : "application-json"
+                "Content-Type": "application/json"
             },
             body: JSON.stringify(aluno)
         })
@@ -57,9 +57,9 @@ export async function editarALunos(id, aluno) {
     }
 }
 
-export async function listarALunos(id) {
+export async function excluirALunos(id) {
     try {
-        const response = await fetch (`${API_URL}/${id}`, {
+        const response = await fetch(`${API_URL}/${id}`, {
             method: "DELETE"
         })
 

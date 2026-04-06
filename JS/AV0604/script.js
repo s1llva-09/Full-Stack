@@ -1,8 +1,8 @@
-import * as api from "./api.js"
+import * as api from "./api.js";
 
 const lista = document.getElementById("listaAlunos");
 const modal = document.getElementById("modal");
-const tituloInput = document.getElementById("modalTitulo")
+const tituloInput = document.getElementById("modalTitulo");
 
 const nomeInput = document.getElementById("nome");
 const idadeInput = document.getElementById("idade");
@@ -16,7 +16,8 @@ let alunoEditando = null;
 
 function abrirModal(modo = "novo", aluno = null) {
     modal.classList.remove("hidden");
-    if (modo == "novo") {
+
+    if (modo === "novo") {
         tituloInput.innerText = "Novo Aluno";
         nomeInput.value = "";
         idadeInput.value = "";
@@ -30,81 +31,118 @@ function abrirModal(modo = "novo", aluno = null) {
         alunoEditando = aluno;
     }
 }
+
 function fecharModal() {
     modal.classList.add("hidden");
 }
+
 btnNovo.addEventListener("click", () => abrirModal("novo"));
 btnCancelar.addEventListener("click", fecharModal);
 btnSalvar.addEventListener("click", async () => {
-    const nome = nomeInput.value
-    const idade = idadeInput.value
-    const curso = cursoInput.value
+    const nome = nomeInput.value;
+    const idade = idadeInput.value;
+    const curso = cursoInput.value;
 
-    if(!nome || !idade || !curso) {
-        alert("preencha todos os dados")
-        return
+    if (!nome || !idade || !curso) {
+        alert("Preencha todos os dados");
+        return;
     }
 
     const aluno = {
-        nome, idade, curso
-    }
+        nome,
+        idade,
+        curso
+    };
 
-    if(alunoEditando == null) {
-        await api.criarALunos(aluno)
-    }else {
-        await api.editarALunos(alunoEditando.id, aluno)
+    if (alunoEditando == null) {
+        aluno.ativo = true;
+        await api.criarALunos(aluno);
+    } else {
+        await api.editarALunos(alunoEditando.id, aluno);
     }
 
     fecharModal();
-})
+    await listarALunos();
+});
+
+async function alternarStatus(aluno) {
+    await api.editarALunos(aluno.id, { ativo: !aluno.ativo });
+    await listarALunos();
+}
 
 function criarCard(aluno) {
     const card = document.createElement("div");
-    card.className = "card";
+    card.classList.add("card");
 
     if (aluno.ativo === false) {
         card.classList.add("inativo");
     }
 
-    const nome = document.createElement("h3");
-    nome.innerText = aluno.nome;
+    const titulo = document.createElement("h3");
+    titulo.textContent = aluno.nome;
 
     const idade = document.createElement("p");
-    idade.innerText = `Idade: ${aluno.idade}`;
+    idade.textContent = `Idade: ${aluno.idade}`;
 
     const curso = document.createElement("p");
-    curso.innerText = `Curso: ${aluno.curso}`;
+    curso.textContent = `Curso: ${aluno.curso}`;
+
+    const statusContainer = document.createElement("label");
+    statusContainer.classList.add("status-aluno");
+
+    const checkboxAtivo = document.createElement("input");
+    checkboxAtivo.type = "checkbox";
+    checkboxAtivo.checked = aluno.ativo !== false;
+    checkboxAtivo.addEventListener("change", async () => {
+        await alternarStatus(aluno);
+    });
+
+    const textoStatus = document.createElement("span");
+    textoStatus.textContent = checkboxAtivo.checked ? "Ativo" : "Inativo";
+
+    statusContainer.appendChild(checkboxAtivo);
+    statusContainer.appendChild(textoStatus);
 
     const acoes = document.createElement("div");
-    acoes.className = "acoes";
+    acoes.classList.add("acoes");
 
     const btnEditar = document.createElement("button");
-    btnEditar.innerText = "Editar";
-    btnEditar.addEventListener("click", () => abrirModal("editar", aluno));
+    btnEditar.textContent = "Editar";
+    btnEditar.addEventListener("click", () => {
+        abrirModal("editar", aluno);
+    });
 
     const btnExcluir = document.createElement("button");
-    btnExcluir.innerText = "Excluir";
+    btnExcluir.textContent = "Excluir";
     btnExcluir.addEventListener("click", async () => {
-        await api.excluirAluno(aluno.id);
+        const confirmar = confirm("Deseja excluir este aluno?");
+        if (!confirmar) return;
+
+        await api.excluirALunos(aluno.id);
+        await listarALunos();
     });
 
     acoes.appendChild(btnEditar);
     acoes.appendChild(btnExcluir);
 
-    card.appendChild(nome);
+    card.appendChild(titulo);
     card.appendChild(idade);
     card.appendChild(curso);
+    card.appendChild(statusContainer);
     card.appendChild(acoes);
 
     return card;
 }
 
-async function listarALunos(alunos) {
-    
+async function listarALunos() {
+    lista.innerHTML = "";
+
+    const alunos = await api.listarALunos();
+
+    alunos.forEach((aluno) => {
+        const card = criarCard(aluno);
+        lista.appendChild(card);
+    });
 }
-//listarAlunos
-//criarALuno()
-//editarALuno()
-//excluirAluno()
-//excluirAluno
-//alternarStatus() (esse aqui eu sei nem por onde começa meu)
+
+listarALunos();

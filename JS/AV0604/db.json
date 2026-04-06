@@ -1,18 +1,18 @@
 {
-   "alunos": [
+  "alunos": [
     {
-     "id": 1,
-     "nome": "João Silva",
-     "idade": 20,
-     "curso": "Informática",
-     "ativo": true
+      "id": "2",
+      "nome": "Maria Souza",
+      "idade": 22,
+      "curso": "Administração",
+      "ativo": true
     },
     {
-     "id": 2,
-     "nome": "Maria Souza",
-     "idade": 22,
-     "curso": "Administração",
-     "ativo": false
+      "nome": "moakinho da silva",
+      "idade": "99",
+      "curso": "dev full stack",
+      "id": "xA2BZavV4h8"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
