@@ -7,14 +7,14 @@ const listaLivros = document.getElementById("listaLivros") // lista onde vai ser
 const contadorLivros = document.getElementById("contadorLivros") //chama o contador de livros para o script para comunicação com a API
 
 const modal = document.getElementById("modal") //modal 
-const modalTitulo = document.getElementById("modalTiutlo") //titulo do modal
+const modalTitulo = document.getElementById("modalTitulo") //titulo do modal
 
 
 const tituloInput = document.getElementById("titulo") // input do titulo
 const autorInput = document.getElementById("autor") //input do autor
 const anoInput = document.getElementById("ano") //input do ano
 
-const bntNovo = document.getElementById("bntNovo") //botao de adicionar livro
+const bntNovo = document.getElementById("btnNovo") //botao de adicionar livro
 const bntCancelar = document.getElementById("cancelar") //botao de cancelar
 const bntSalvar = document.getElementById("salvar") //botao de salvar
 
@@ -29,7 +29,7 @@ function abrirModal(modo = "novo", livro = null) { //função que abre o modal p
 
     if(modo == "novo") { //verifica o valor passado, se for "novo" vai para cadastro
         //preparar para cadastro do livro
-        modalTitulo.innerText = "Novo Titulo" //troca o titulo do modal para o titulo do q vc esta cadastrando
+        modalTitulo.innerText = "Novo Livro" //troca o titulo do modal para o titulo do q vc esta cadastrando
         tituloInput.value = "" //limpa o input titulo
         autorInput.value = "" //limpa o input autor
         anoInput.value = "" //limpa o input ano
@@ -54,16 +54,16 @@ bntCancelar.addEventListener("click", fecharModal) //ao click fecha o modal
 
 function criarCard(livros) {            
     const card = document.createElement("div") //cria uma div para o card
-    card.classList("card") // aplica a div do card na classe "card" do css
+    card.classList.add("card") // aplica a div do card na classe "card" do css
 
     const titulo = document.createElement("h3") //cria o h3 para o titulo
-    titulo.textContent = livro.titulo //passa a variavel de titulo para o h3
+    titulo.textContent = livros.titulo //passa a variavel de titulo para o h3
 
     const autor = document.createElement("p") //cria um paragrafo para nome do autor
-    autor.textContent = `Autor: ${livro.autor}` //passa a variavel do nome do autor para o "P"
+    autor.textContent = `Autor: ${livros.autor}` //passa a variavel do nome do autor para o "P"
 
     const ano = document.createElement("p") //cria um paragrafo com o ano de lançamento do livro
-    ano.textContent = `Ano: ${livro.ano}` //passa a variavel do ano do livro para o "P"
+    ano.textContent = `Ano: ${livros.ano}` //passa a variavel do ano do livro para o "P"
 
     //area dos botões
     const acoes = document.createElement("div") //cria a div dos botões de ações
@@ -76,7 +76,30 @@ function criarCard(livros) {
 
     //Botao Excluir
     const btnExcluir = document.createElement("button") //cria o botao de excluir
+    btnExcluir.textContent = "Excluir"
     btnExcluir.classList.add("btn", "btn-perigo") // adiciona ele a classe de "btn-perigo"
 
+    acoes.appendChild(btnEditar) //passa o btnEditar para dentro da div "acoes"
+    acoes.appendChild(btnExcluir) //passa o btnExcluir para dentro da div "acoes"
 
+    card.appendChild(titulo) //passa o titulo(h3) para dentro do card(div)
+    card.appendChild(autor) //passa o autor(p) para dentro do card(div)
+    card.appendChild(ano) //passa o ano(p) para dentro do card(div)
+    card.appendChild(acoes) //passa acoes(div) para dentro do card(div)
+
+    listaLivros.appendChild(card) //passa todo o card(div) criado para listaLivros(div)
 }
+
+async function carregarLivros() { //uma função async pois contem await
+    listaLivros.innerHTML = "" // apaga tudo dentro da (div) Lista de livros para recarregar a lista do zero
+
+    const livros = await api.obterLivros() //chama a função e busca os livros
+
+    livros.forEach((livro) => { //percorre a lista, passa por cada item e retorna cada objeto
+        criarCard(livro)
+    })
+
+    contadorLivros.textContent = `${livros.length} livros` //pega o tamanho da array e retorna cada item presente
+}
+
+carregarLivros()

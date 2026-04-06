@@ -13,3 +13,22 @@ export async function obterLivros() {
         throw error
     }
 }
+
+export async function criarLivro(livro) {
+    try {
+        const response = await fetch(API_URL, {
+            method: 'POST',
+            headers: {"Content-Type" : "application/json"},
+            body: JSON.stringify(livro)
+        })
+
+        if (!response.ok) {
+            throw new Error("Erro ao criar")
+        }
+
+        return await response.json()
+    } catch (error) {
+        console.error(error)
+        throw error
+    }
+}
