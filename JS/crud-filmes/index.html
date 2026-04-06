@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRUD Filmes</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="script.js" defer></script>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Desafio CRUD</p>
+        <h1>Catalogo de Filmes</h1>
+        <p class="subtitle">
+          Monte o CRUD no <code>script.js</code> usando DOM puro. A API fica em
+          <code>http://localhost:3002/filmes</code>.
+        </p>
+      </div>
+
+      <button id="btnNovo" class="btn btn-primario" type="button">Novo Filme</button>
+    </header>
+
+    <main class="layout">
+      <section class="painel">
+        <div class="painel-topo">
+          <div>
+            <h2>Filmes cadastrados</h2>
+            <p id="contadorFilmes" class="contador">0 filmes</p>
+          </div>
+        </div>
+
+        <div id="listaFilmes" class="grid"></div>
+      </section>
+
+      <aside class="painel painel-desafio">
+        <h2>Roteiro</h2>
+        <ol>
+          <li>Selecionar os elementos do DOM.</li>
+          <li>Criar <code>filmeEditando</code>.</li>
+          <li>Fazer <code>abrirModal()</code> e <code>fecharModal()</code>.</li>
+          <li>Criar <code>criarCard(filme)</code>.</li>
+          <li>Fazer <code>carregarFilmes()</code>.</li>
+          <li>Cadastrar filme pelo botao salvar.</li>
+          <li>Editar filme pelo card.</li>
+          <li>Excluir filme com confirmacao.</li>
+        </ol>
+      </aside>
+    </main>
+  </div>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-card">
+      <h2 id="modalTitulo">Novo Filme</h2>
+
+      <div class="campo">
+        <label for="titulo">Titulo</label>
+        <input id="titulo" type="text" placeholder="Ex.: Interestelar">
+      </div>
+
+      <div class="campo">
+        <label for="diretor">Diretor</label>
+        <input id="diretor" type="text" placeholder="Ex.: Christopher Nolan">
+      </div>
+
+      <div class="campo">
+        <label for="ano">Ano</label>
+        <input id="ano" type="number" placeholder="Ex.: 2014">
+      </div>
+
+      <div class="acoes">
+        <button id="cancelar" class="btn btn-secundario" type="button">Cancelar</button>
+        <button id="salvar" class="btn btn-primario" type="button">Salvar</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

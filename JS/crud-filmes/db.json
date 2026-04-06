@@ -1,0 +1,23 @@
+{
+  "filmes": [
+    {
+      "id": "1",
+      "titulo": "Interestelar",
+      "diretor": "Christopher Nolan",
+      "ano": "2014"
+    },
+    {
+      "id": "2",
+      "titulo": "Parasita",
+      "diretor": "Bong Joon-ho",
+      "ano": "2019"
+    },
+    {
+      "id": "3",
+      "titulo": "Cidade de Deus",
+      "diretor": "Fernando Meirelles",
+      "ano": "2002"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
