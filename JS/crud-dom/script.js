@@ -29,7 +29,7 @@ function abrirModal(modo = "novo", livro = null) { //função que abre o modal p
 
     if(modo == "novo") { //verifica o valor passado, se for "novo" vai para cadastro
         //preparar para cadastro do livro
-        modalTitulo.innerText = "Novo Livro" //troca o titulo do modal para o titulo do q vc esta cadastrando
+        modalTitulo.innerText = "Novo" //troca o titulo do modal para o titulo do q vc esta cadastrando
         tituloInput.value = "" //limpa o input titulo
         autorInput.value = "" //limpa o input autor
         anoInput.value = "" //limpa o input ano
@@ -52,18 +52,18 @@ function fecharModal() { //função para fechar o modal
 bntNovo.addEventListener("click",() => abrirModal("novo")) //quando o usuario clicar em Novo Livro vai para abrir modal
 bntCancelar.addEventListener("click", fecharModal) //ao click fecha o modal
 
-function criarCard(livros) {            
+function criarCard(livro) {            
     const card = document.createElement("div") //cria uma div para o card
     card.classList.add("card") // aplica a div do card na classe "card" do css
 
     const titulo = document.createElement("h3") //cria o h3 para o titulo
-    titulo.textContent = livros.titulo //passa a variavel de titulo para o h3
+    titulo.textContent = livro.titulo //passa a variavel de titulo para o h3
 
     const autor = document.createElement("p") //cria um paragrafo para nome do autor
-    autor.textContent = `Autor: ${livros.autor}` //passa a variavel do nome do autor para o "P"
+    autor.textContent = `Autor: ${livro.autor}` //passa a variavel do nome do autor para o "P"
 
     const ano = document.createElement("p") //cria um paragrafo com o ano de lançamento do livro
-    ano.textContent = `Ano: ${livros.ano}` //passa a variavel do ano do livro para o "P"
+    ano.textContent = `Ano: ${livro.ano}` //passa a variavel do ano do livro para o "P"
 
     //area dos botões
     const acoes = document.createElement("div") //cria a div dos botões de ações
@@ -73,11 +73,21 @@ function criarCard(livros) {
     const btnEditar = document.createElement("button") //cria o botao de editar
     btnEditar.textContent = "Editar" // coloca o nome dele como "Editar"
     btnEditar.classList.add("btn", "btn-secundario") // adiciona ele a classe de "btn-secundario"
+    btnEditar.addEventListener("click", () => { //abre o modal para edição
+        abrirModal("editar", livro)
+    })
 
     //Botao Excluir
     const btnExcluir = document.createElement("button") //cria o botao de excluir
     btnExcluir.textContent = "Excluir"
     btnExcluir.classList.add("btn", "btn-perigo") // adiciona ele a classe de "btn-perigo"
+    btnExcluir.addEventListener("click", async () => { //ao clicar no botao ativa a função
+        const confirmar = confirm("Deseja excluir o livro?")
+        if(!confirmar) return //verifica se ira excluir ou nao
+
+        await api.excluirLivro(livro.id) //chama funcao de exclusao
+        await carregarLivro()
+    })
 
     acoes.appendChild(btnEditar) //passa o btnEditar para dentro da div "acoes"
     acoes.appendChild(btnExcluir) //passa o btnExcluir para dentro da div "acoes"
@@ -101,5 +111,29 @@ async function carregarLivros() { //uma função async pois contem await
 
     contadorLivros.textContent = `${livros.length} livros` //pega o tamanho da array e retorna cada item presente
 }
+
+bntSalvar.addEventListener("click", async () => {
+    const titulo = tituloInput.value //pega o valor digitado de titulo
+    const autor = autorInput.value //pega o valor digitado de autor
+    const ano = anoInput.value //pega o valor digitado de ano
+
+    if(!titulo || !autor || !ano) { //valida se algum campo esta vazio
+        alert("Preencha todos os campos!")
+        return
+    }
+
+    const livro = { // monta o objeto livro
+        titulo, autor, ano
+    }
+
+    if (livroEditando == null) { //verifica se esta cadastrando
+        await api.criarLivro(livro) //se nao for edição o cadastro é novo
+    }else {
+        await api.editarLivro(livroEditando.id, livro) //se sim abre a edição
+    }
+
+    fecharModal()
+    await carregarLivros()
+})
 
 carregarLivros()
