@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Controle de Alunos</title>
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <header>
+     <h1>Alunos</h1>
+     <button id="btnNovo">Novo Aluno</button>
+    </header>
+
+    <main>
+     <div id="listaAlunos" class="grid"></div>
+    </main>
+
+<div id="modal" class="modal hidden">
+    <div class="modal-content">
+        <h2 id="modalTitulo">Adicionar aluno</h2>
+        <input type="text" id="nome" placeholder="Nome">
+        <input type="number" id="idade" placeholder="Idade">
+        <input type="text" id="curso" placeholder="Curso">
+    
+     <div class="acoes">
+        <button id="salvar">Salvar</button>
+        <button id="cancelar">Cancelar</button>
+     </div>
+    </div>
+</div>
+
+<script type="module" src="script.js"></script>
+</body>
+</html>

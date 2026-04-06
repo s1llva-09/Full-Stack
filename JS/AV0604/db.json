@@ -1,0 +1,18 @@
+{
+   "alunos": [
+    {
+     "id": 1,
+     "nome": "João Silva",
+     "idade": 20,
+     "curso": "Informática",
+     "ativo": true
+    },
+    {
+     "id": 2,
+     "nome": "Maria Souza",
+     "idade": 22,
+     "curso": "Administração",
+     "ativo": false
+    }
+  ]
+}
