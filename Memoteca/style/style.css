@@ -1,62 +1,102 @@
+/* ==================================================
+ * STYLE.CSS - Estilos Visuais do Memoteca
+ * ==================================================
+ * Este arquivo define toda a aparência do site:
+ * - Cores, fontes, espaçamentos
+ * - Layout (header, main, footer)
+ * - Estilos do modal e dos cards
+ * ================================================== */
+
+/* ==================================================
+ * RESET E CONFIGURAÇÕES GLOBAIS
+ * ================================================== */
+
+/* Remove espaçamento padrão de todos os elementos
+ * O navegador adiciona márgenes e paddings por padrão */
 * {
     padding: 0;
     margin: 0;
 }
 
+/* Define a fonte personalizada (Poppins)
+ * @font-face carrega um arquivo de fonte (.ttf) */
 @font-face {
     font-family: 'Poppins';
     src: url('../fonts/poppins/Poppins-Light.ttf') format('truetype');
 }
 
+/* ==================================================
+ * VARIÁVEIS DE CORES
+ * ==================================================
+ * Variáveis CSS para reuse de cores em todo o site
+ * Sintaxe: --nome-da-variavel: valor;
+ * Uso: color: var(--nome-da-variavel);
+ * 
+ * Benefício: muda uma cor, muda em todo lugar!
+ */
 :root {
-    --branco: #FFFFFF;
-    --babyBlue: #DBE4EF;
-    --cinzaClaro: #EDF0F4;
-    --cinzaMedio: #8F8F8F;
-    --cinza: #444444;
-    --azulDark: #041832;
-    --azulMedio: #144480;
-    --azulNeon: #2BDEFD;
+    --branco: #FFFFFF;          /* Branco */
+    --babyBlue: #DBE4EF;        /* Azul baby */
+    --cinzaClaro: #EDF0F4;     /* Cinza claro */
+    --cinzaMedio: #8F8F8F;     /* Cinza médio */
+    --cinza: #444444;           /* Cinza escuro */
+    --azulDark: #041832;       /* Azul escuro (principal) */
+    --azulMedio: #144480;      /* Azul médio */
+    --azulNeon: #2BDEFD;      /* Azul neon */
 
+    /* Fonte para header e footer */
     --pHeaderAndFooter: 'Poppins' sans-serif;
 }
 
+/* ==================================================
+ * HEADER (Cabeçalho)
+ * ==================================================
+ * Fica no topo da página */
 header {
-    background-color: var(--azulDark);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background-color: var(--azulDark);  /* Fundo azul escuro */
+    display: flex;                    /* Layout flexível */
+    align-items: center;              /* Alinha verticalmente */
+    justify-content: center;         /* Alinha horizontalmente */
 }
 
+/* Container do logo e texto */
 #logoContainer {
     width: 558px;
     height: auto;
     padding: 360px 112px 240px 112px;
 }
 
+/* Texto do container do logo */
 #logoContainer p {
-    color: var(--babyBlue);
-    font-size: 52px;
+    color: var(--babyBlue);            /* Cor azul baby */
+    font-size: 52px;                 /* Tamanho grande */
     font-family: var(--pHeaderAndFooter);
-    font-weight: lighter;
+    font-weight: lighter;            /* Fonte mais fina */
     margin-top: 72px;
 }
 
+/* Texto em negrito dentro do parágrafo */
 #logoContainer p strong {
     font-size: 52px;
-    color: var(--branco);
+    color: var(--branco);             /* Branco */
 }
 
+/* Container da imagem (comentado, não usado) */
 /* #imgContainer img{
     width: 697px;
     height: 480px;
 } */
 
-/* Main */
+/* ==================================================
+ * MAIN (Área Principal)
+ * ==================================================
+ * Onde os cards e botões aparecem */
 main {
+    /* Imagem de fundo + cor fallback (se imagem não carregar) */
     background-image: url('../img/Background.png');
     background-color: var(--cinzaClaro);
-    height: 3249px;
+    
+    height: 3249px;                  /* Altura bem grande */
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -64,6 +104,7 @@ main {
     background-repeat: no-repeat;
 }
 
+/* Container do botão adicionar */
 #adicionarContainer {
     width: auto;
     margin: 192px 0px 64px 0px;
@@ -72,31 +113,38 @@ main {
     flex-direction: column;
 }
 
+/* Classe para títulos */
 .titulo {
     color: var(--azulDark);
     font-size: 44px;
     margin: 0 0 32px 0;
 }
 
+/* Botão Adicionar Pensamento */
 #buttonadicionarPensamanetoModal {
-    padding: 8px 32px;
-    border-radius: 40px;
+    padding: 8px 32px;              /* Espaçamento interno (cima/baixo, laterais) */
+    border-radius: 40px;            /* Bordas bem arredondadas */
     color: var(--branco);
     background-color: var(--azulDark);
-    cursor: pointer;
+    cursor: pointer;                 /* Cursor de "mão" ao passar o mouse */
 }
 
+/* Linha divisória */
 hr {
     width: 180px;
     background-color: var(--azulDark);
     margin-bottom: 96px;
 }
 
+/* ==================================================
+ * DIV VAZIA
+ * ==================================================
+ * Mensagem mostrada quando não há pensamentos */
 #divVazia {
     display: flex;
     align-items: center;
     flex-direction: column;
-    
+    n
 }
 
 #divVazia p {
@@ -104,7 +152,10 @@ hr {
     margin-bottom: 32px;
 }
 
-/* Footer */
+/* ==================================================
+ * FOOTER (Rodapé)
+ * ==================================================
+ * Fica no final da página (créditos) */
 footer {
     background-color: var(--azulDark);
     padding: 32px;
@@ -116,11 +167,18 @@ footer p {
     color: var(--babyBlue);
 }
 
+/* ==================================================
+ * CLASSE AUXILIAR (OCULTO)
+ * ==================================================
+ * Usada para esconder elementos */
 .oculto {
     display: none !important;
 }
 
-/* Modal */
+/* ==================================================
+ * MODAL (Formulário Popup)
+ * ==================================================
+ * Janela que aparece sobre a página */
 .modal {
     width: 80%;
     background-color: var(--branco);
@@ -128,22 +186,25 @@ footer p {
     padding: 48px 40px;
 }
 
+/* Títulos dentro do modal */
 .modal h1 {
     font-size: 16px;
     margin-bottom: 10px;
     color: var(--azulDark);
 }
 
+/* Inputs (campos de texto) dentro do modal */
 .modal input {
     width: 100%;
     height: 80px;
     background-color: var(--cinzaClaro);
-    border-style: none;
+    border-style: none;              /* Sem borda */
     padding: 10px;
     border-radius: 10px;
     margin-bottom: 30px;
 }
 
+/* Botões dentro do modal */
 .modal button {
     padding: 10px 20px;
     color: white;
@@ -152,27 +213,49 @@ footer p {
     margin-right: 10px;
 }
 
+/* Primeiro botão (Confirmar - azul) */
 .modal button:nth-child(1) {
     background-color: var(--azulDark);
 }
 
+/* Segundo botão (Cancelar - branco) */
 .modal button:nth-child(2) {
     background-color: var(--branco);
     color: var(--azulDark);
 }
 
-/* Container dos cards (GRID) */
+/* ==================================================
+ * MURAL (Container dos Cards)
+ * ==================================================
+ * Wrapper que segura todos os cards */
 .muralContainer {
     width: 80%;
     display: grid;
+    
+    /* Grid automático:
+     * repeat(auto-fill, minmax(280px, 1fr))
+     * - Cria tantas colunas quanto couberem na tela
+     * - Cada coluna tem no mínimo 280px de largura
+     * - Se couber mais, distribui igualmente (1fr)
+     */
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 30px;
+    gap: 30px;                       /* Espaço entre cards */
     margin-top: 40px;
 }
 
-/* Card */
+/* ==================================================
+ * CARD (Cartão Individual)
+ * ==================================================
+ * Cada pensamento é um card */
 .muralSubContainer {
     background-color: var(--cinzaClaro);
+    
+    /* Imagem de fundo (gota azul no canto)
+     * background-image = imagem
+     * background-repeat = não repite
+     * background-position = posição
+     * background-size = tamanho
+     */
     background-image: url('../img/gotaAzul.png');
     background-repeat: no-repeat;
     background-position: top 15px left 15px;
@@ -185,45 +268,53 @@ footer p {
     padding: 20px;
     min-height: 180px;
 
+    /* Bordas inferior e direita (azuis) */
     border-bottom: 6px solid var(--azulMedio);
     border-right: 6px solid var(--azulMedio);
+    
+    /* Sombra suave (0px x, 4px y, 8px blur, cor) */
     box-shadow: 0 4px 8px rgba(0,0,0,0.08);
     border-radius: 4px;
 }
 
-/* Texto do pensamento */
+/* Primeiro parágrafo (pensamento) dentro do card
+ * p:first-child = primeiro <p> dentro do elemento */
 .muralSubContainer p:first-child {
     margin-top: 40px;
     font-size: 14px;
     color: var(--cinza);
-    line-height: 1.4;
+    line-height: 1.4;              /* Altura da linha */
 }
 
-/* Autor */
+/* Segundo parágrafo (autor) dentro do card
+ * p:nth-child(2) = segundo <p> */
 .muralSubContainer p:nth-child(2) {
     font-size: 13px;
     color: var(--cinzaMedio);
     margin-top: 10px;
 }
 
-/* Container dos botões */
+/* Container dos botões de ação (editar/deletar) */
 .botoesContainer {
     display: flex;
-    justify-content: flex-end;
-    gap: 10px;
+    justify-content: flex-end;        /* Alinha à direita */
+    gap: 10px;                     /* Espaço entre botões */
     margin-top: 15px;
 }
 
-/* Botões estilo ícone */
+/* ==================================================
+ * BOTÕES DE AÇÃO (Editar/Deletar)
+ * ================================================== */
 .botaoAcao {
-    border: none;
-    background: transparent;
+    border: none;                   /* Sem borda */
+    background: transparent;       /* Fundo transparente */
     cursor: pointer;
     font-size: 16px;
     color: var(--azulDark);
-    transition: transform 0.2s;
+    transition: transform 0.2s;    /* Animação suave */
 }
 
+/* Quando passa o mouse em cima (:hover) */
 .botaoAcao:hover {
-    transform: scale(1.2);
+    transform: scale(1.2);          /* Aumenta 20% */
 }

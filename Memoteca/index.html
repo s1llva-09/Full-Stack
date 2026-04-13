@@ -1,45 +1,105 @@
 <!DOCTYPE html>
+<!-- ==================================================
+ * INDEX.HTML - Estrutura Principal do Memoteca
+ * ==================================================
+ * Este é o arquivo principal que o navegador lê
+ * Contém a estrutura/schematic do site
+ * Todo o conteúdo é estático (não muda)
+ * Os cards são criados dinamicamente via JavaScript
+ * ================================================== -->
+
 <html lang="pt-br">
+<!-- lang=idioma do site (português brasileiro) -->
 
 <head>
+    <!-- ==================================================
+     * HEAD (Cabeçalho - não aparece na página)
+     * ================================================== -->
+    
+    <!-- Define caracteres UTF-8 (inclui Ç, acentos, etc) -->
     <meta charset="UTF-8">
+    
+    <!-- Define escala visual para dispositivos móveis -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Título da aba do navegador -->
     <title>Memoteca</title>
+    
+    <!-- Link para o arquivo de estilos (CSS) -->
+    <!-- href=caminho para o CSS -->
     <link rel="stylesheet" href="style/style.css">
+    
+    <!-- Script JavaScript (type="module" permite imports) -->
+    <!-- src=caminho para o arquivo JS -->
     <script type="module" src="script/main.js"></script>
 </head>
 
 <body>
+    <!-- ==================================================
+     * BODY (Corpo - tudo que aparece na página)
+     * ================================================== -->
+
+    <!-- ==================================================
+     * HEADER (Cabeçalho)
+     * ================================================== -->
     <header>
+        <!-- Container do logo e texto -->
         <div id="logoContainer">
+            <!-- Imagem do logo (SVG) -->
             <img src="img/Logo.svg" alt="Logo-Memoteca">
+            
+            <!-- Texto descritivo -->
             <p>
                 Trechos de músicas, citações de livros e <strong><br>suas melhores ideias num só lugar!</strong>
             </p>
         </div>
+        
+        <!-- Container da imagem decorativa -->
         <div id="imgContainer">
             <img src="img/Colagem 1 - notebook.png" alt="Notebook imagem">
         </div>
     </header>
     
+    <!-- ==================================================
+     * MAIN (Área Principal)
+     * ================================================== -->
     <main>
+        <!-- Container do botão adicionar -->
         <div id="adicionarContainer">
+            <!-- Título -->
             <h1 id="tituloh1" class="titulo">Adicione um pensamento novo:</h1>
+            
+            <!-- Botão que abre o modal (formulário) -->
+            <!-- ID único para ser encontrado pelo JavaScript -->
             <button id="buttonadicionarPensamanetoModal">Adicionar pensamentos</button>
         </div>
 
+        <!-- Linha divisória -->
         <hr>
 
+        <!-- Título da área dos cards -->
         <h1 id="tituloMeuMural" class="titulo">Meu Mural</h1>
         
+        <!-- Div vazia (mensagem quando não há pensamentos) -->
+        <!-- Classe "oculto" = esconde via CSS quando tem cards -->
         <div id="divVazia" class="oculto">
-    <p>Nada por aqui ainda, que tal compartilhar alguma ideia?</p>
-    <img src="img/Vazio.png" alt="">
-</div>
+            <p>Nada por aqui ainda, que tal compartilhar alguma ideia?</p>
+            <img src="img/Vazio.png" alt="">
+        </div>
+        
+        <!-- IMPORTANTE: Os cards NÃO estão aqui no HTML!
+         * Eles são criados dinamicamente via JavaScript
+         * A função criarMuralContainer() adiciona os cards
+         * antes desta div ou após o título "Meu Mural"
+         -->
     </main>
+    
+    <!-- ==================================================
+     * FOOTER (Rodapé)
+     * ================================================== -->
     <footer>
         <p>© 2024 Desenvolvido por Gabriel Costa. Projeto fictício sem fins comerciais.</p>
     </footer>
-</body>
 
+</body>
 </html>
