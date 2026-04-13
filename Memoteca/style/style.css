@@ -1,0 +1,229 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../fonts/poppins/Poppins-Light.ttf') format('truetype');
+}
+
+:root {
+    --branco: #FFFFFF;
+    --babyBlue: #DBE4EF;
+    --cinzaClaro: #EDF0F4;
+    --cinzaMedio: #8F8F8F;
+    --cinza: #444444;
+    --azulDark: #041832;
+    --azulMedio: #144480;
+    --azulNeon: #2BDEFD;
+
+    --pHeaderAndFooter: 'Poppins' sans-serif;
+}
+
+header {
+    background-color: var(--azulDark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#logoContainer {
+    width: 558px;
+    height: auto;
+    padding: 360px 112px 240px 112px;
+}
+
+#logoContainer p {
+    color: var(--babyBlue);
+    font-size: 52px;
+    font-family: var(--pHeaderAndFooter);
+    font-weight: lighter;
+    margin-top: 72px;
+}
+
+#logoContainer p strong {
+    font-size: 52px;
+    color: var(--branco);
+}
+
+/* #imgContainer img{
+    width: 697px;
+    height: 480px;
+} */
+
+/* Main */
+main {
+    background-image: url('../img/Background.png');
+    background-color: var(--cinzaClaro);
+    height: 3249px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#adicionarContainer {
+    width: auto;
+    margin: 192px 0px 64px 0px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.titulo {
+    color: var(--azulDark);
+    font-size: 44px;
+    margin: 0 0 32px 0;
+}
+
+#buttonadicionarPensamanetoModal {
+    padding: 8px 32px;
+    border-radius: 40px;
+    color: var(--branco);
+    background-color: var(--azulDark);
+    cursor: pointer;
+}
+
+hr {
+    width: 180px;
+    background-color: var(--azulDark);
+    margin-bottom: 96px;
+}
+
+#divVazia {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    
+}
+
+#divVazia p {
+    color: var(--azulDark);
+    margin-bottom: 32px;
+}
+
+/* Footer */
+footer {
+    background-color: var(--azulDark);
+    padding: 32px;
+}
+
+footer p {
+    text-align: center;
+    font-family: var(--pHeaderAndFooter);
+    color: var(--babyBlue);
+}
+
+.oculto {
+    display: none !important;
+}
+
+/* Modal */
+.modal {
+    width: 80%;
+    background-color: var(--branco);
+    border-radius: 10px;
+    padding: 48px 40px;
+}
+
+.modal h1 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: var(--azulDark);
+}
+
+.modal input {
+    width: 100%;
+    height: 80px;
+    background-color: var(--cinzaClaro);
+    border-style: none;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.modal button {
+    padding: 10px 20px;
+    color: white;
+    font-weight: bolder;
+    border-radius: 50px;
+    margin-right: 10px;
+}
+
+.modal button:nth-child(1) {
+    background-color: var(--azulDark);
+}
+
+.modal button:nth-child(2) {
+    background-color: var(--branco);
+    color: var(--azulDark);
+}
+
+/* Container dos cards (GRID) */
+.muralContainer {
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+/* Card */
+.muralSubContainer {
+    background-color: var(--cinzaClaro);
+    background-image: url('../img/gotaAzul.png');
+    background-repeat: no-repeat;
+    background-position: top 15px left 15px;
+    background-size: 40px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    padding: 20px;
+    min-height: 180px;
+
+    border-bottom: 6px solid var(--azulMedio);
+    border-right: 6px solid var(--azulMedio);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+    border-radius: 4px;
+}
+
+/* Texto do pensamento */
+.muralSubContainer p:first-child {
+    margin-top: 40px;
+    font-size: 14px;
+    color: var(--cinza);
+    line-height: 1.4;
+}
+
+/* Autor */
+.muralSubContainer p:nth-child(2) {
+    font-size: 13px;
+    color: var(--cinzaMedio);
+    margin-top: 10px;
+}
+
+/* Container dos botões */
+.botoesContainer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+/* Botões estilo ícone */
+.botaoAcao {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 16px;
+    color: var(--azulDark);
+    transition: transform 0.2s;
+}
+
+.botaoAcao:hover {
+    transform: scale(1.2);
+}

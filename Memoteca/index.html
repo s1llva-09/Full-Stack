@@ -1,42 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Memoteca</title>
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="style/style.css">
+    <script type="module" src="script/main.js"></script>
 </head>
+
 <body>
     <header>
-        <div class="logo">
-            <img src="assets/Logo.png" alt="Logo memoteca">
-            <h1>Trechos de músicas, citações de livros e
-                <br> <strong>suas melhores ideias
-                <br> num só lugar!</strong
-            </h1>
+        <div id="logoContainer">
+            <img src="img/Logo.svg" alt="Logo-Memoteca">
+            <p>
+                Trechos de músicas, citações de livros e <strong><br>suas melhores ideias num só lugar!</strong>
+            </p>
+        </div>
+        <div id="imgContainer">
+            <img src="img/Colagem 1 - notebook.png" alt="Notebook imagem">
+        </div>
+    </header>
+    
+    <main>
+        <div id="adicionarContainer">
+            <h1 id="tituloh1" class="titulo">Adicione um pensamento novo:</h1>
+            <button id="buttonadicionarPensamanetoModal">Adicionar pensamentos</button>
         </div>
 
-            <img src="assets/images/Imagem banner.png" alt="Colagem">
-    </header>
+        <hr>
 
-    <main>
-        <div class="overlay"><img src="assets/images/Background.png" alt="Background"></div>
-        <h2>Adicione um pensamento novo:</h2>
-        <section id="form-container">
-            <form id="form-pensamento">
-                <label for="conteudo">Pensamento</label>
-                <textarea id="conteudo" placeholder="Digite seu pensamento"></textarea>
-
-                <label for="autoria">Autor(a) ou Fonte</label>
-                <input id="autoria" type="text" placeholder="Insira o nome do(a) autor(a) ou fonte." required>
-
-                <div class="form-botoes">
-                    <button>Adicionar</button>
-                    <button>Cancelar</button>
-                </div>
-            </form>
-        </section>
-
+        <h1 id="tituloMeuMural" class="titulo">Meu Mural</h1>
+        
+        <div id="divVazia" class="oculto">
+    <p>Nada por aqui ainda, que tal compartilhar alguma ideia?</p>
+    <img src="img/Vazio.png" alt="">
+</div>
     </main>
+    <footer>
+        <p>© 2024 Desenvolvido por Gabriel Costa. Projeto fictício sem fins comerciais.</p>
+    </footer>
 </body>
+
 </html>
