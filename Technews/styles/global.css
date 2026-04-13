@@ -54,6 +54,7 @@ img {
 
 main {
     margin-top: 40px; /*Da espaço na parte de cima da box*/
+    gap: 80px;
 }
 
 .content-tag {
