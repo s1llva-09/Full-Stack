@@ -3,10 +3,12 @@ const USD = 5.00 //valor dolar
 const EUR = 5.88 //valor euro
 const GBP = 6.75 //valor libra
 
+//obtendo elementos do formulario
 const amount = document.getElementById("amount")//pega o elemente pelo id ("amount") do Html
 
 const currency = document.getElementById("currency") //seleciona pela id o seletor de moedas
 const form = document.querySelector("form") //busca pelo id o seletor que esta dentro da tag form
+const footer = document.querySelector("main footer") //seleciona a main e dentro dela pega o footer
 
 
 //Manipulando o input amount para receber somente numeros
@@ -38,5 +40,14 @@ form.onsubmit = () => {
 
 //função de conversão da moeada
 function convertCurrency(amount, price, symbol) {
-    console.log(amount, price, symbol)
+    try {
+        //aplica a classe que exibe o footer para mostrar conversão
+        footer.classList.add("show-result")
+    } catch (error) {
+        //oculta o footer removendo ele
+        footer.classList.remove("show-result")
+        
+        console.log(error)
+        alert("Erro ao converter!")
+    }
 }
