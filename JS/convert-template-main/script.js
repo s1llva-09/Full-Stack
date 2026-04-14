@@ -1,7 +1,7 @@
 //cotação de moedas atual
-const USD = 5.00
-const EUR = 5.88
-const GBP = 6.75
+const USD = 5.00 //valor dolar
+const EUR = 5.88 //valor euro
+const GBP = 6.75 //valor libra
 
 const amount = document.getElementById("amount")//pega o elemente pelo id ("amount") do Html
 
